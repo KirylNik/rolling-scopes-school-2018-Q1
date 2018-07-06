@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+.users-result {
+    border-collapse: collapse;
+    width: 100%;
+}
+.users-result th{
+    padding: 10px;
+    color: white;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.users-result-header th:nth-child(2n) {
+    background-color: rgb(0, 139, 139);
+}
+
+.users-result-header th:nth-child(2n-1) {
+    background-color: rgba(0, 139, 139, 0.6);
+}
+
+.users-result-header th:nth-child(1) {
+    color: black;
+}
+
+
+.users-result tr{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.users-result td{
+    padding: 10px;
+    text-align: center;
+}
+
+.users-result tr:nth-child(2n){
+    background-color: lightyellow;
+}
+
+.form-select-session {
+    margin: 20px;
+    text-align: center;
+}
+
+.form-select-session {
+    margin: 20px;
+    text-align: center;
+}
+
+.form-select-session input[type="submit"] {
+    padding: 5px 10px;
+    margin-left: 10px;
+}

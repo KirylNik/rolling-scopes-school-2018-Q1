@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Match-match game</title>
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="main-container">
+            <section class="rules-container">
+                <p><span class="menu-caption">How to play:</span><br>
+                Memory is a couner game where the object is to find pairs.<br>
+                When the game begins, all pictures are hidden.</p>
+                <span class="menu-caption">To play:</span>
+                <div class="steps-container">
+                <ol>
+                    <li>Select two cards to try to match the pictures.</li>
+                    <li>If you match the pictures you can go again.</li>
+                    <li>If they don't match it is the computer turn them.</li>
+                    <li>The player that finds all pairs wins!</li>
+                    <li>Have Fun!</li>
+                </ol>
+                </div>
+                <a href="#" class="button button-next">Next</a>
+            </section>
+            <section class="start-settings-container">
+                <section class="registration-form-container">
+                    <form action="#" method="GET" class="registration-form" id="registration-form-1">
+                        <label>
+                            <input type="name" placeholder=" Your first name*" name="first-name" required class="form-element">
+                        </label>
+                        <label>
+                            <input type="name" placeholder=" Your last name*" name="last-name" required class="form-element">
+                        </label>
+                        <label>
+                            <input type="email" placeholder=" Your email*" name="email" required class="form-element">
+                        </label>
+                    </form>
+                </section>
+                <section class="select-difficulty-level-container">
+                    <div class="difficulty-level difficulty-level-easy">Easy (5 x 2)
+                        <div class="difficulty-level-example difficulty-level-example-easy">
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                    </div>
+                    </div>
+                    <div class="difficulty-level difficulty-level-normal">Normal (6 x 3)
+                        <div class="difficulty-level-example difficulty-level-example-normal">
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                        </div>
+                    </div>
+                    <div class="difficulty-level difficulty-level-hard">Hard (8 x 3)
+                        <div class="difficulty-level-example difficulty-level-example-hard">
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                            <div class="example-cards-mini"></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="select-card-back-container">
+                    <i class="fas fa-angle-left prev-back-card"></i>
+                    <div class="card-back-preview-container">
+                        <div class="card-back-preview-area"></div>
+                        <div class="dots-navigation"></div>
+                    </div>
+                    <i class="fas fa-angle-right next-back-card"></i>
+                </section>  
+                <div class="flex-next-line"></div>
+                <form class="start-settings-button-container">
+                    <button class="button button-back">Back</button>
+                    <button class="button button-next-step-2">Next</button>
+                </form>
+            </section>
+            <section class="game-page"></section>
+            <section class="result-page">Final score</section>
+        </div>
+        <form>
+            <button class="button-back-to-start">Back to start</button>
+        </form>
+        <script src="script.js"></script>
+    </body>
+</html>
