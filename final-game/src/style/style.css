@@ -12,29 +12,6 @@
     font-style: normal;
 }
 
-@keyframes changePositionResultContainer {
-    0% {
-        transition-property: opacity;
-        opacity: 0;
-    }
-
-    10% {
-        transition-property: opacity;
-        right: 30%;
-        opacity: 1;
-    }
-
-    90% {
-        right: 45%;
-        opacity: 1;
-    }
-
-    100% {
-        right: 100%;
-        opacity: 0;
-    }
-}
-
 @keyframes animatePlayerAttack1 {
     0% {
         left: 20%
@@ -1206,13 +1183,6 @@ body {
     opacity: 1;
 }
 
-.animate-appear-results-players {
-    transition-property: transform, opacity;
-    transform: translateY(-90px);
-    opacity: 1;
-    display: block;
-}
-
 .modal-window-background {
     position: fixed;
     top: 0;
@@ -1310,33 +1280,6 @@ body {
     box-shadow: 0px 0px 40px rgba(118, 179, 35, 0.9);
 }
 
-.taskResultContainer {
-    position: absolute;
-    width: 450px;
-    height: 200px;
-    right: 0px;
-    top: calc(50% - 100px);
-    background-image: url('../image/question-backgrond.png');
-    background-size: 100% 100%;
-    z-index: 200;
-    text-align: center;
-    line-height: 200px;
-    font-size: 2.8rem;
-    font-family: anironbold, 'Times New Roman', Times, serif;
-    box-shadow: 30px -30px 40px 10px rgba(0, 0, 0, 0.9);
-    opacity: 0;
-    transition-duration: 1s;
-}
-
-.taskResultContainer-animate-appear {
-    animation: changePositionResultContainer 3s linear;
-}
-
-.colorDarkRed {
-    color: darkred;
-    text-shadow: 1px 1px 9px #000;
-}
-
 .personages-status-container {
     position: absolute;
     display: flex;
@@ -1356,12 +1299,6 @@ body {
     width: 29%;
     height: 100%;
     margin-right: 10px;  
-}
-
-.table-results-container {
-    font-size: 1.3em;
-    max-height: 260px;
-    overflow-y: auto;
 }
 
 .animate-player-attack1 {

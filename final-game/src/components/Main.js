@@ -7,8 +7,9 @@ import TaskEnterAnswer from './tasks/TaskEnterAnswer';
 import TaskAudioQuestion from './tasks/TaskAudioQuestion';
 import ControlInterface from './Control_interface';
 import AnswerContainer from './AnswerContainer.js';
+import NotificationResult from './notificationResult/index';
 import AudioPlayer from './AudioPlayer.js';
-import Score from './Score.js';
+import Score from './score/Score';
 import { game } from './index.js';
 import { getObjQuestion, savePlayerResult, getRandomTypeAttack, loadQuestions, loadOrcNames, loadListEnemy, loadListAudioTrack, questions, orcNames, listEnemies, copyQuestions } from './Utils';
 
@@ -26,6 +27,7 @@ export default class Main {
         this.questions;
         this.orcNames;
         this.listEnemies;
+        this.notificationResult;
         this.audioPlayer;
         this.score;
     }
@@ -41,6 +43,7 @@ export default class Main {
         this.control.init();
         this.answerContainer = new AnswerContainer();
         this.answerContainer.addHandlerClick();
+        this.notificationResult = new NotificationResult();
         this.updateStatusBar();
     }
 
@@ -104,7 +107,7 @@ export default class Main {
         return new Promise((resolve) => {
             if (this.player.health <= 0) {
                 this.player.die();
-                game.currentTask.displayTaskResult('You lose!')
+                game.notificationResult.displayNotification('You lose!')
                 .then(() => {
                     savePlayerResult();
                     this.goToScore();
@@ -112,7 +115,7 @@ export default class Main {
             } else if (this.enemy.health <= 0 && this.enemy.name === 'Sauron') {
                 this.quantityKilledEnemy++;
                 this.enemy.die(this.enemy.enemyType);
-                game.currentTask.displayTaskResult('You won!')
+                game.notificationResult.displayNotification('You won!')
                 .then(() => {
                     savePlayerResult();
                     this.goToScore();

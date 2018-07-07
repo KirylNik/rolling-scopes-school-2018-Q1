@@ -1,7 +1,7 @@
 let path = require('path');
 
 let conf = {
-    entry: './src/js/index.js',
+    entry: './src/components/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js',

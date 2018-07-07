@@ -1,4 +1,4 @@
-import { getResultsPlayers } from './Utils';
+import { getResultsPlayers } from './../Utils';
 
 export default class Score {
 
@@ -17,11 +17,11 @@ export default class Score {
         let windowResultsTitle = document.createElement('div');
         let tableResultsContainer = document.createElement('div');
     
-        windowResults.classList.add('task-container');
+        windowResults.classList.add('score-container');
         windowResults.id = 'windowResults';
-        windowResultsTitle.classList.add('menu-action-title');
+        windowResultsTitle.classList.add('window-score-title');
         windowResultsTitle.textContent = 'Table of the results of the game';
-        tableResultsContainer.classList.add('question-container', 'table-results-container');
+        tableResultsContainer.classList.add('table-results-container');
         tableResultsContainer.id = 'tableResultsContainer';
         tableResultsContainer.innerHTML = `<table id="tableResults"><tr><th>Player name</th><th>Killed the enemies</th><th>Time of game</th><th></th</tr></table>`;
         
@@ -49,6 +49,6 @@ export default class Score {
         let windowResults = document.getElementById('windowResults');
     
         windowResults.classList.add('displayBlock');
-        windowResults.classList.add('animate-appear-results-players');
+        windowResults.classList.add('animate-appear-score-container');
     }
 }

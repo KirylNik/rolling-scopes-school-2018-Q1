@@ -42,8 +42,6 @@ export default class ControlInterface {
             closedElem = event.target.parentElement;
         } else {
             closedElem = document.getElementById('task-container');
-            let taskResultContainer = document.getElementById('taskResultContainer');
-            document.body.removeChild(taskResultContainer);
         }
 
         if (closedElem.classList.contains('select-action-animate-appear')) {

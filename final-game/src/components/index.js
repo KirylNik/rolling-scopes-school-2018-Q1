@@ -1,4 +1,6 @@
 import '../style/style.css';
+import '../components/notificationResult/style.css';
+import '../components/score/style.css';
 import Main from './Main';
 
 // Create a new game.
