@@ -1,15 +1,16 @@
 // The class that controls the game.
 import Enemy from './Enemy';
 import Player from './Player';
-import Task from './Task';
 import TaskPuzzle from './tasks/TaskPuzzle';
 import TaskChooseAnswer from './tasks/TaskChooseAnswer';
 import TaskEnterAnswer from './tasks/TaskEnterAnswer';
 import TaskAudioQuestion from './tasks/TaskAudioQuestion';
 import ControlInterface from './Control_interface';
 import AnswerContainer from './AnswerContainer.js';
+import AudioPlayer from './AudioPlayer.js';
+import Score from './Score.js';
 import { game } from './index.js';
-import { questions, orcNames, listEnemies, copyQuestions, getObjQuestion, savePlayerResult, getRandomTypeAttack, createWindowResults, fillWindowResults, displayWindowResults, loadQuestions, loadOrcNames, loadListEnemy } from './Utils';
+import { getObjQuestion, savePlayerResult, getRandomTypeAttack, loadQuestions, loadOrcNames, loadListEnemy, loadListAudioTrack, questions, orcNames, listEnemies, copyQuestions } from './Utils';
 
 export default class Main {
 
@@ -25,6 +26,8 @@ export default class Main {
         this.questions;
         this.orcNames;
         this.listEnemies;
+        this.audioPlayer;
+        this.score;
     }
 
     init () {
@@ -37,7 +40,7 @@ export default class Main {
         this.control = new ControlInterface();
         this.control.init();
         this.answerContainer = new AnswerContainer();
-        this.answerContainer.addHundlerClick();
+        this.answerContainer.addHandlerClick();
         this.updateStatusBar();
     }
 
@@ -45,6 +48,10 @@ export default class Main {
         loadQuestions()
         .then(() => loadOrcNames())
         .then(() => loadListEnemy())
+        .then(() => loadListAudioTrack())
+        .then(() => {
+            this.audioPlayer = new AudioPlayer()
+        })
     }
     // Create a new task for the player.
     createNewTask (event) {
@@ -94,27 +101,32 @@ export default class Main {
     }
     // Check the health of the personages and perform actions if someone died.
     checkHealthPersonages () {
-        if (this.player.health <= 0) {
-            this.player.die();
-            game.currentTask.displayTaskResult('You lose!')
-            .then(() => {
-                savePlayerResult();
-                this.goToResults();
-            })  
-        } else if (this.enemy.health <= 0 && this.enemy.name === 'Sauron') {
-            this.quantityKilledEnemy++;
-            this.enemy.die(this.enemy.enemyType);
-            game.currentTask.displayTaskResult('You won!')
-            .then(() => {
-                savePlayerResult();
-                this.goToResults();
-            })  
-        } else if (this.enemy.health <= 0) {
-            this.quantityKilledEnemy++;
-            this.enemy.die(this.enemy.enemyType)
-            .then(() => this.callNextEnemy());
-            this.currentStep = 'enemy';
-        }
+        return new Promise((resolve) => {
+            if (this.player.health <= 0) {
+                this.player.die();
+                game.currentTask.displayTaskResult('You lose!')
+                .then(() => {
+                    savePlayerResult();
+                    this.goToScore();
+                })  
+            } else if (this.enemy.health <= 0 && this.enemy.name === 'Sauron') {
+                this.quantityKilledEnemy++;
+                this.enemy.die(this.enemy.enemyType);
+                game.currentTask.displayTaskResult('You won!')
+                .then(() => {
+                    savePlayerResult();
+                    this.goToScore();
+                })  
+            } else if (this.enemy.health <= 0) {
+                this.quantityKilledEnemy++;
+                this.enemy.die(this.enemy.enemyType)
+                .then(() => this.callNextEnemy());
+                this.currentStep = 'enemy';
+                resolve();
+            } else {
+                resolve();
+            }
+        })
     }
 
     transferTurnNextPersonage () {
@@ -142,8 +154,8 @@ export default class Main {
             game.enemy.getDamage();
             game.checkNegativeHealth();
             game.updateStatusBar();
-            game.checkHealthPersonages();
-            game.takeNextStep();
+            game.checkHealthPersonages()
+            .then(() => game.takeNextStep());
         })
     }
     // If the current enemy is an orc, but generate a name for it.
@@ -164,10 +176,8 @@ export default class Main {
         }
     }
     // Go to the results table window.
-    goToResults () {
-        createWindowResults();
-        fillWindowResults();
-        displayWindowResults();
+    goToScore () {
+        this.score = new Score();
     }
 
     // Get the type of the action selected by the user.

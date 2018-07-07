@@ -1231,7 +1231,7 @@ body {
     align-items: center;
 }
 
-.answerOption {
+.answer-option {
     height: 35px;
     padding: 0px 25px;
     width: max-content;
@@ -1243,7 +1243,7 @@ body {
     font-size: 1.5rem;
 }
 
-.answerOption:hover {
+.answer-option:hover {
     font-size: 1.6rem;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.9);
     cursor: pointer;

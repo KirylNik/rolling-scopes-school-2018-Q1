@@ -4,8 +4,8 @@ import { isPartString, soundAttackPlayer, soundAttackEnemy } from './Utils.js';
 
 export default class Task {
     // Check the player's answer.
-    checkUserAnswer (correctOrderPuzzle, currentOrderPuzzle) {
-        if (isPartString(correctOrderPuzzle, currentOrderPuzzle)) {
+    checkUserAnswer (correctAnswer, userAnswer) {
+        if (isPartString(correctAnswer, userAnswer)) {
             this.displayTaskResult('Correct answer!')
             .then(() => {
                 setTimeout(() => {
@@ -37,7 +37,7 @@ export default class Task {
         document.body.append(taskResultContainer);
 
         this.closeTaskContainer = () => {
-            game.control.hundlerButtonCloseWindow();
+            game.control.handlerButtonCloseWindow();
             taskResultContainer.removeEventListener('animationend', this.closeTaskContainer);
             resolve();
         };

@@ -28,12 +28,12 @@ export default class TaskAudioQuestion extends Task {
         buttonAnswer.id = 'button-answer-audio-question';
         buttonAnswer.classList.add('menu-button');
     
-        buttonPlayAudio.addEventListener('click', this.hundlerButtonPlayQuestion.bind(this));
+        buttonPlayAudio.addEventListener('click', this.handlerButtonPlayQuestion.bind(this));
     
         answerContainer.append(buttonPlayAudio, input, buttonAnswer);
     }
     // Add a handler for the audio issue start button.
-    hundlerButtonPlayQuestion (event) {
+    handlerButtonPlayQuestion (event) {
         let audioQuestion = event.target.dataset.audioQuestion;
         let voices = speechSynthesis.getVoices();
         let utterance = new SpeechSynthesisUtterance(audioQuestion);

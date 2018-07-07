@@ -28,8 +28,8 @@ export default class Personage {
                 this.getDamage();
                 game.checkNegativeHealth();
                 game.updateStatusBar();
-                game.checkHealthPersonages();
-                game.takeNextStep();
+                game.checkHealthPersonages()
+                .then(() => game.takeNextStep());
             })
         };
     }
@@ -83,12 +83,12 @@ export default class Personage {
                 typePersonageAttack = game.currentStep;
             }
 
-            personageContainer.addEventListener('animationend', this.hundlerAnimationEnd.bind(this, personageContainer, typePersonageAttack, resolve));
+            personageContainer.addEventListener('animationend', this.handlerAnimationEnd.bind(this, personageContainer, typePersonageAttack, resolve));
             personageContainer.classList.add(`animate-${typePersonageAttack}-${this.selectedAction}`);
         })
     }
 
-    hundlerAnimationEnd (personageContainer, typePersonageAttack, resolve) {
+    handlerAnimationEnd (personageContainer, typePersonageAttack, resolve) {
         personageContainer.classList.remove(`animate-${typePersonageAttack}-${this.selectedAction}`);
         resolve();
     }
@@ -100,14 +100,14 @@ export default class Personage {
             let currentStep = game.currentStep;
 
             effectContainer.id = 'effectContainer';
-            effectContainer.addEventListener('animationend', this.hundlerAnimationEndEpicAttack.bind(this, personageContainer, effectContainer, currentStep, resolve));
+            effectContainer.addEventListener('animationend', this.handlerAnimationEndEpicAttack.bind(this, personageContainer, effectContainer, currentStep, resolve));
             document.body.append(effectContainer);
             personageContainer.classList.add(`${currentStep}-epyc-attack`);
             effectContainer.classList.add(`animate-${currentStep}-${this.selectedAction}`);
         })
     }
 
-    hundlerAnimationEndEpicAttack (personageContainer, effectContainer, currentStep, resolve) {
+    handlerAnimationEndEpicAttack (personageContainer, effectContainer, currentStep, resolve) {
         document.body.removeChild(effectContainer);
         personageContainer.classList.remove(`${currentStep}-epyc-attack`);
         resolve();
@@ -119,12 +119,12 @@ export default class Personage {
 
             effectContainer.id = 'effectContainer';
             document.body.append(effectContainer);
-            effectContainer.addEventListener('animationend', this.hundlerAnimationEndImpact.bind(this, effectContainer, resolve));
+            effectContainer.addEventListener('animationend', this.handlerAnimationEndImpact.bind(this, effectContainer, resolve));
             effectContainer.classList.add(`animate-${game.currentStep}-${this.selectedAction}`);
         })
     }
 
-    hundlerAnimationEndImpact (effectContainer, resolve) {
+    handlerAnimationEndImpact (effectContainer, resolve) {
         document.body.removeChild(effectContainer);
         resolve();
     }
@@ -133,15 +133,15 @@ export default class Personage {
         return new Promise((resolve, reject) => {
             let personageContainer = document.getElementById(personage);
             
-            this.wrapperHundlerForAnimationDeath = this.hundlerForAnimationDeath.bind(this, personageContainer, resolve);
-            personageContainer.addEventListener('animationend', this.wrapperHundlerForAnimationDeath);
+            this.wrapperHandlerForAnimationDeath = this.handlerForAnimationDeath.bind(this, personageContainer, resolve);
+            personageContainer.addEventListener('animationend', this.wrapperHandlerForAnimationDeath);
             personageContainer.classList.add('animate-die');
         })
     }
 
-    hundlerForAnimationDeath (personageContainer, resolve) {
+    handlerForAnimationDeath (personageContainer, resolve) {
         document.body.removeChild(personageContainer);
-        personageContainer.removeEventListener('animationend', this.wrapperHundlerForAnimationDeath);
+        personageContainer.removeEventListener('animationend', this.wrapperHandlerForAnimationDeath);
         resolve();
     }
     // Create a container for the personage.

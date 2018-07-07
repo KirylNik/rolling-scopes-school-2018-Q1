@@ -3,6 +3,7 @@ import { game } from './index.js';
 // Objects for the loaded data.
 export var questions;
 export var orcNames;
+export var listAudioTrack;
 export var listEnemies;
 export var copyQuestions = [];
 
@@ -77,51 +78,11 @@ export function replaceBlanksOnDashes (str) {
 
     return result;
 }
-
-export function createWindowResults () {
-    let windowResults = document.createElement('div');
-    let windowResultsTitle = document.createElement('div');
-    let tableResultsContainer = document.createElement('div');
-
-    windowResults.classList.add('task-container');
-    windowResults.id = 'windowResults';
-    windowResultsTitle.classList.add('menu-action-title');
-    windowResultsTitle.textContent = 'Table of the results of the game';
-    tableResultsContainer.classList.add('question-container', 'table-results-container');
-    tableResultsContainer.id = 'tableResultsContainer';
-    tableResultsContainer.innerHTML = `<table id="tableResults"><tr><th>Player name</th><th>Killed the enemies</th><th>Time of game</th><th></th</tr></table>`;
-    
-    windowResults.append(windowResultsTitle);
-    windowResults.append(tableResultsContainer);
-    document.body.append(windowResults);
-}
-
-export function fillWindowResults () {
-    let arrayResultsPlayers = getResultsPlayers();
-    let tableResults = document.getElementById('tableResults');
-
-    for (let i = 0; i < arrayResultsPlayers.length; i++) {
-        let playerName = arrayResultsPlayers[i].playerName;
-        let gameTime = arrayResultsPlayers[i].gameTime;
-        let killedEnemy = arrayResultsPlayers[i].killedEnemy;
-        let tableRow = document.createElement('tr');
-
-        tableRow.innerHTML = `<td>${playerName}</td><td>${killedEnemy}</td><td>${gameTime}</td>`;
-        tableResults.append(tableRow);
-    }
-};
-
-export function displayWindowResults () {
-    let windowResults = document.getElementById('windowResults');
-
-    windowResults.classList.add('displayBlock');
-    windowResults.classList.add('animate-appear-results-players');
-}
 // Get the results of previous games.
 export function getResultsPlayers () {
     let jsonString = localStorage.getItem('LOTR-Game-array-results');
     return(JSON.parse(jsonString));
-};
+}
 // Save the results of the current player.
 export function savePlayerResult () {
     let arrayResultsPlayers = getResultsPlayers();
@@ -162,7 +123,7 @@ export function soundAttackEnemy () {
 function getJSON (url/*, callback*/) {
     return fetch(url)
         .then((response) => response.json())
-};
+}
 
 export function loadQuestions () {
     return getJSON('https://raw.githubusercontent.com/KirylNik/KirylNik.github.io/master/json/questions.json')
@@ -180,5 +141,11 @@ export function loadOrcNames () {
 export function loadListEnemy () {
     return getJSON('https://raw.githubusercontent.com/KirylNik/KirylNik.github.io/master/json/list-enemy.json')
     .then((data) => {listEnemies = data})
+    .catch((error) => alert('Something went wrong: ' + error))
+}
+
+export function loadListAudioTrack () {
+    return getJSON('https://raw.githubusercontent.com/KirylNik/KirylNik.github.io/master/json/list-audio-track.json')
+    .then((data) => {listAudioTrack = data})
     .catch((error) => alert('Something went wrong: ' + error))
 }

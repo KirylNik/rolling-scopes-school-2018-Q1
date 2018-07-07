@@ -3,17 +3,17 @@ import { game } from './index.js';
 
 export default class AnswerContainer {
     // Add a handler for the response container.
-    addHundlerClick () {
+    addHandlerClick () {
         let answerContainer = document.getElementById('answer-container');
-        answerContainer.addEventListener('click', this.hundlerClick.bind(game));
+        answerContainer.addEventListener('click', this.handlerClick.bind(game));
     }
 
-    hundlerClick (event, game) {
+    handlerClick (event, game) {
         if (event.target.id === 'button-send-introduced-answer') {
             this.answerContainer.checkEnteredAnswer();
         } else if (event.target.id === 'button-answer-audio-question') {
             this.answerContainer.checkAudioQuestion();
-        } else if (event.target.classList.contains('answerOption')) {
+        } else if (event.target.classList.contains('answer-option')) {
             this.currentTask.checkUserAnswer(event.target.dataset.answer, 'ok');
         } else if (event.target.id === 'button-answer-puzzle') {
             this.answerContainer.checkUserPuzzle();

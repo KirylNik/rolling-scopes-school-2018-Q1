@@ -14,7 +14,7 @@ export default class TaskChooseAnswer extends Task {
 
         for (let i = 0; i < answerOptions.length; i++) {
             let div = document.createElement('div');
-            div.classList.add('answerOption');
+            div.classList.add('answer-option');
             div.textContent = answerOptions[i];
             if (objQuestion.Answer === answerOptions[i]) {
                 div.setAttribute('data-answer', 'ok');
