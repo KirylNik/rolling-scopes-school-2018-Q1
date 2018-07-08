@@ -6,24 +6,32 @@ export default class Task {
     // Check the player's answer.
     checkUserAnswer (correctAnswer, userAnswer) {
         if (isPartString(correctAnswer, userAnswer)) {
-            game.notificationResult.displayNotification('Correct answer!')
-            .then(() => {
-                game.control.handlerButtonCloseWindow();
-                setTimeout(() => {
-                    game.currentStep = 'player';
-                    game.player.act();
-                    soundAttackPlayer();
-                }, 2000)
-            })
+            this.handlerCorrectUserAnswer();
         } else {
-            game.notificationResult.displayNotification('Incorrect answer!')
-            .then(() => {
-                game.control.handlerButtonCloseWindow();
-                setTimeout(() => {
-                    game.makeMoveEnemy();
-                    soundAttackEnemy();
-                }, 2000)
-            })
+            this.handlerIncorrectUserAnswer();
         }
+    }
+
+    handlerCorrectUserAnswer () {
+        game.notificationResult.displayNotification('Correct answer!')
+        .then(() => {
+            game.control.handlerButtonCloseWindow();
+            setTimeout(() => {
+                game.currentStep = 'player';
+                game.player.act();
+                soundAttackPlayer();
+            }, 2000)
+        })
+    }
+
+    handlerIncorrectUserAnswer () {
+        game.notificationResult.displayNotification('Incorrect answer!')
+        .then(() => {
+            game.control.handlerButtonCloseWindow();
+            setTimeout(() => {
+                game.makeMoveEnemy();
+                soundAttackEnemy();
+            }, 2000)
+        })
     }
 }

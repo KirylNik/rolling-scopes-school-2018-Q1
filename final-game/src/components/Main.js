@@ -1,16 +1,17 @@
 // The class that controls the game.
 import Enemy from './Enemy';
 import Player from './Player';
-import TaskPuzzle from './tasks/TaskPuzzle';
+import IntroScreensaver from './introScreensaver/index';
+import TaskPuzzle from './tasks/TaskPuzzle/index';
 import TaskChooseAnswer from './tasks/TaskChooseAnswer';
 import TaskEnterAnswer from './tasks/TaskEnterAnswer';
 import TaskAudioQuestion from './tasks/TaskAudioQuestion';
-import ControlInterface from './Control_interface';
-import AnswerContainer from './AnswerContainer.js';
+import ControlInterface from './ControlInterface';
+import AnswerContainer from './AnswerContainer';
 import NotificationResult from './notificationResult/index';
-import AudioPlayer from './AudioPlayer.js';
-import Score from './score/Score';
-import { game } from './index.js';
+import AudioPlayer from './AudioPlayer';
+import Score from './score/index';
+import { game } from './index';
 import { getObjQuestion, savePlayerResult, getRandomTypeAttack, loadQuestions, loadOrcNames, loadListEnemy, loadListAudioTrack, questions, orcNames, listEnemies, copyQuestions } from './Utils';
 
 export default class Main {
@@ -28,16 +29,16 @@ export default class Main {
         this.orcNames;
         this.listEnemies;
         this.notificationResult;
+        this.introScreensaver;
         this.audioPlayer;
         this.score;
     }
 
     init () {
+        this.introScreensaver = new IntroScreensaver();
         this.loadData();
         this.player = new Player('Gandalf', 100);
         this.enemy = new Enemy('Orc', 20, 'orc');
-        this.player.enterArena();
-        this.enemy.enterArena();
         this.currentStep = 'player';
         this.control = new ControlInterface();
         this.control.init();
@@ -182,7 +183,6 @@ export default class Main {
     goToScore () {
         this.score = new Score();
     }
-
     // Get the type of the action selected by the user.
     getTypeAction (event) {
         switch (event.target.parentElement.parentElement.parentElement.id) {
@@ -199,5 +199,4 @@ export default class Main {
                 break;
         }
     }
-
 }

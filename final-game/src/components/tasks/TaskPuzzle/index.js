@@ -1,5 +1,5 @@
 // Class TaskPuzzle
-import Task from '../Task';
+import Task from '../../Task';
 
 export default class TaskPuzzle extends Task {
     

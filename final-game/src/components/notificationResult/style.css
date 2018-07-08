@@ -14,6 +14,7 @@
     box-shadow: 30px -30px 40px 10px rgba(0, 0, 0, 0.9);
     opacity: 0;
     transition-duration: 1s;
+    display: none;
 }
 
 .notification-container-animate-appear {
@@ -23,6 +24,10 @@
 .color-dark-red {
     color: darkred;
     text-shadow: 1px 1px 9px #000;
+}
+
+.displayBlock {
+    display: block;
 }
 
 @keyframes changePositionNotificationContainer {

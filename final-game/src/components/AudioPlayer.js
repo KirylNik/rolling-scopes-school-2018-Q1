@@ -10,6 +10,7 @@ export default class AudioPlayer {
 
     init () {
         this.playInitalTrack();
+        this.createAudioPlayerInDOM();
         this.addHandlerAudioPlayer();
     }
 
@@ -17,6 +18,23 @@ export default class AudioPlayer {
         const nameInitalTrack = listAudioTrack[0];
         this.audio.src = `audio/${nameInitalTrack}`;
         this.audio.play();
+    }
+
+    createAudioPlayerInDOM () {
+        const playerContainer = document.createElement('div');
+        const arrNamesButton = ['back', 'pause', 'play', 'next'];
+        
+        playerContainer.classList.add('audio-player-container');
+        playerContainer.id = 'audio-player-container';
+
+        for (let i = 0; i < arrNamesButton.length; i++) {
+            const button = document.createElement('div');
+            button.classList.add('audio-player-button');
+            button.id = `audio-player-button-${arrNamesButton[i]}`;
+            playerContainer.append(button);
+        }
+
+        document.body.append(playerContainer);
     }
 
     play () {
@@ -54,7 +72,7 @@ export default class AudioPlayer {
     }
     // Add a handler for the background music menu.
     addHandlerAudioPlayer () {
-        let audioPlayerButtonsContainer = document.getElementById('audio-player-buttons-container');
+        let audioPlayerContainer = document.getElementById('audio-player-container');
     
         this.handlerAudioPlayerButtons = (event) => {
             if (event.target.id === 'audio-player-button-pause') {
@@ -68,6 +86,6 @@ export default class AudioPlayer {
             }
         };
 
-        audioPlayerButtonsContainer.addEventListener('click', this.handlerAudioPlayerButtons);
+        audioPlayerContainer.addEventListener('click', this.handlerAudioPlayerButtons);
     }
 }

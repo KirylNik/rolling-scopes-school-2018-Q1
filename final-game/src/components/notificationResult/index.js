@@ -23,14 +23,14 @@ export default class NotificationResult {
             }
 
             this.wrapperClosenotificationContainer = this.closenotificationContainer.bind(this, notificationContainer, resolve);
-            notificationContainer.classList.add('notification-container-animate-appear');
+            notificationContainer.classList.add('notification-container-animate-appear', 'displayBlock');
             notificationContainer.addEventListener('animationend', this.wrapperClosenotificationContainer);
         })
     }
 
     closenotificationContainer (notificationContainer, resolve) {
         notificationContainer.removeEventListener('animationend', this.wrapperClosenotificationContainer);
-        notificationContainer.classList.remove('notification-container-animate-appear', 'color-dark-red');
+        notificationContainer.classList.remove('notification-container-animate-appear', 'color-dark-red', 'displayBlock');
         resolve();
     }
 }
