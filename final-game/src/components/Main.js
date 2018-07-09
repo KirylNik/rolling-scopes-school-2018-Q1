@@ -36,7 +36,10 @@ export default class Main {
 
     init () {
         this.introScreensaver = new IntroScreensaver();
-        this.loadData();
+        this.loadData()
+        .then(() => {
+            this.audioPlayer = new AudioPlayer()
+        });
         this.player = new Player('Gandalf', 100);
         this.enemy = new Enemy('Orc', 20, 'orc');
         this.currentStep = 'player';
@@ -49,12 +52,12 @@ export default class Main {
     }
 
     loadData () {
-        loadQuestions()
-        .then(() => loadOrcNames())
-        .then(() => loadListEnemy())
-        .then(() => loadListAudioTrack())
-        .then(() => {
-            this.audioPlayer = new AudioPlayer()
+        return new Promise((resolve) => {
+            loadQuestions()
+            .then(() => loadOrcNames())
+            .then(() => loadListEnemy())
+            .then(() => loadListAudioTrack())
+            .then(() => resolve())
         })
     }
     // Create a new task for the player.
