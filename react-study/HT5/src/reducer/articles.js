@@ -8,12 +8,12 @@ const articlesMap = normalizedArticles.reduce((acc, articles) => {
 
 const articleArr = Object.values(articlesMap);
 
-export default (articlesState = articleArr, action) => {
+export default (articleState = articleArr, action) => {
     const {type, payload} = action
 
     switch (type) {
         case DELETE_ARTICLE: return articleState.filter(article => article.id !== payload.id)
     }
 
-    return articlesState
+    return articleState
 }
